@@ -13,10 +13,16 @@ const videoRouter = require('./Routers/cloudinaryRoute');
 
 const cors=require('cors')
 
-app.use(cors({
-  origin:'bug-battle-project-c996nq9di-coderarmed.vercel.app',
-  credentials:true
-}))
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://bug-battle-project-c996nq9di-coderarmed.vercel.app/",
+];
+app.use(
+  cors({
+    origin: allowedOrigins,
+    credentials: true,
+  })
+);
 
 
 app.use(express.json());
