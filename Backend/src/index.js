@@ -14,16 +14,26 @@ const videoRouter = require('./Routers/cloudinaryRoute');
 const cors=require('cors')
 
 const allowedOrigins = [
-  "http://localhost:5173",
-  "https://bug-battle-project.vercel.app",
+  "http://localhost:5173",                    // local
+  "https://bug-battle-project.vercel.app",    // agar koi custom domain ho
+  "https://bug-battle-project-c996nq9di-coderarmed.vercel.app",  // ← Yeh add karo
 ];
+
 app.use(
   cors({
-    origin: allowedOrigins,
+    origin: function (origin, callback) {
+      // Allow requests with no origin (like mobile apps, Postman, etc.)
+      if (!origin) return callback(null, true);
+      
+      if (allowedOrigins.indexOf(origin) !== -1) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
     credentials: true,
   })
 );
-
 
 app.use(express.json());
 app.use(cookieParser());
