@@ -20,6 +20,7 @@ import { MapPin, Link as LinkIcon, Edit2, Github, Twitter, Eye, CheckCircle2, Me
   useEffect(()=>{
     async function fetchDetail(){
         const response= await axiosClient.get(`/Auth/profile`);
+        console.log(response);
         setProfile(response.data);
     }
     fetchDetail();
