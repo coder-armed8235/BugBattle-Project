@@ -1,0 +1,22 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap');
+@import "tailwindcss";
+@plugin "daisyui";
+
+@theme {
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* Technical Theme Colors */
+  --color-bg-main: #020617; /* Slate 950 */
+  --color-bg-surface: #0f172a; /* Slate 900 */
+  --color-accent-red: #dc2626; /* Red 600 */
+  --color-border-grid: #1e293b; /* Slate 800 */
+  --color-text-dim: #94a3b8; /* Slate 400 */
+}
+
+@layer base {
+  body {
+    @apply bg-[#1a1a1a] text-slate-100 font-sans antialiased selection:bg-accent-red selection:text-white;
+  }
+}
