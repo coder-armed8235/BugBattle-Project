@@ -14,7 +14,7 @@ const videoRouter = require('./Routers/cloudinaryRoute');
 const cors=require('cors')
 
 app.use(cors({
-  origin:'http://localhost:5173',
+  origin:'bug-battle-project-c996nq9di-coderarmed.vercel.app',
   credentials:true
 }))
 
