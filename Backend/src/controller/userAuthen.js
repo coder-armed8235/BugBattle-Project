@@ -52,7 +52,12 @@ const login=async(req,res)=>{
         }
 
         const token = jwt.sign({_id: result._id,emailId: result.emailId,role:result.role}, process.env.JWT_KEY, {expiresIn: "12h"});
-        res.cookie("token",token,{maxAge:60*60*1000});
+        res.cookie("token",token,{
+        httpOnly: true,
+        secure: true,
+        sameSite: "none",
+        maxAge: 60 * 60 * 1000,
+      });
         res.status(200).json({
             user:reply,
             message:"login successfully!"
