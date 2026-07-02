@@ -15,7 +15,7 @@ const cors=require('cors')
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://bug-battle-project-c996nq9di-coderarmed.vercel.app/",
+  "https://bug-battle-project-c996nq9di-coderarmed.vercel.app",
 ];
 app.use(
   cors({
