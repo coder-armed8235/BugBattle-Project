@@ -18,7 +18,6 @@ const userMiddleware=async(req,res,next)=>{
     }
   //    console.log("before checking token")
     const isBlocked= await redisClient.exists(`token:${token}`);
-   console.log("after checking token");
     if(isBlocked){
       throw new Error("please Login Again");
     }
