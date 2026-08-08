@@ -29,7 +29,7 @@ authRoute.get('/check',userMiddleware,(req,res)=>{
             _id:req.user._id,
             role:req.user.role
         }
-console.log(reply);
+
         res.status(201).json({
             user:reply,
             message:"valid user"
