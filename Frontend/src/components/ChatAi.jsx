@@ -28,6 +28,7 @@ function ChatAi({ Problem }) {
   const onSubmit = async (data) => {
     if (!data.message?.trim()) return;
 
+     
     // Add user message (keeping your original parts structure)
     const userMsg = { role: 'user', parts: [{ text: data.message.trim() }] };
     setMessages(prev => [...prev, userMsg]);
@@ -36,7 +37,7 @@ function ChatAi({ Problem }) {
 
     try {
       // Send full updated history
-      const response = await axiosClient.post("/ai/chat", {
+      const response = await axiosClient.post('/ai/chat', {
         messages: [...messages, userMsg],   // ← fixed: now includes latest user message
         title: Problem.title,
         description: Problem.description,
@@ -44,6 +45,7 @@ function ChatAi({ Problem }) {
         startCode: Problem.startCode
       });
 
+      console.log(response.data.message);
       const aiText = response.data.message || response.data.content || "No response";
 
       setMessages(prev => [...prev, { 
@@ -51,12 +53,22 @@ function ChatAi({ Problem }) {
         parts: [{ text: aiText }]
       }]);
     } catch (err) {
-      console.error(err);
-      setMessages(prev => [...prev, { 
-        role: 'model', 
-        parts: [{ text: "Error from AI Chatbot" }]
-      }]);
-    } finally {
+      console.log(err);
+      console.error("AI CHAT ERROR:", err);
+      // 401 is handled by axios interceptor
+  if (err.response?.status === 401) {
+    return;
+  }
+  setMessages(prev => [
+    ...prev,
+    {
+      role: 'model',
+      parts: [{
+        text: err.response?.data?.message || "Error from AI Chatbot"
+      }]
+    }
+  ]);
+} finally {
       setIsLoading(false);
       inputRef.current?.focus();
     }
