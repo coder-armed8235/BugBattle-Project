@@ -56,7 +56,7 @@ function ChatAi({ Problem }) {
       console.log(err);
       console.error("AI CHAT ERROR:", err);
       // 401 is handled by axios interceptor
-  if (err.response?.status === 401) {
+    if (err.response?.status === 401) {
     return;
   }
   setMessages(prev => [
@@ -64,7 +64,7 @@ function ChatAi({ Problem }) {
     {
       role: 'model',
       parts: [{
-        text: err.response?.data?.message || "Error from AI Chatbot"
+        text: err.response?.data?.message || "Sign in Required"
       }]
     }
   ]);
