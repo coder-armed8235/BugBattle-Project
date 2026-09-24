@@ -2,8 +2,10 @@ import { useState, useRef, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import axiosClient from "../utils/axiosClient"; // note: still has typo — should be axiosClient
 import { Send, Loader2 } from 'lucide-react';
-
+import { useNavigate } from "react-router";
 function ChatAi({ Problem }) {
+
+   const navigate = useNavigate();
   const [messages, setMessages] = useState([
     { role: 'model', parts: [{ text: "Hi, How can I help you?" }] },
   ]);
@@ -57,6 +59,7 @@ function ChatAi({ Problem }) {
       console.error("AI CHAT ERROR:", err);
       // 401 is handled by axios interceptor
     if (err.response?.status === 401) {
+     navigate("/login");
     return;
   }
   setMessages(prev => [
