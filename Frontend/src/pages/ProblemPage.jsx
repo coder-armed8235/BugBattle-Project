@@ -46,7 +46,6 @@ const langMap = {
 // --- Sub-components ---
 
 const ProblemDescription = ({Problem}) => {
-  console.log(Problem)
   const difficultyColor = {
     Easy: 'bg-emerald-500/10 text-emerald-500 border-emerald-500/20',
     Medium: 'bg-amber-500/10 text-amber-500 border-amber-500/20',
@@ -433,7 +432,6 @@ const Console = ({ runResult, submitResult , isConsoleExpanded}) => {
         <div className="flex items-center justify-between">
           <h2 className="text-base sm:text-lg font-semibold text-gray-200">
             Submission Result
-            {6+3}
           </h2>
           <span
             className={`px-3 py-1 rounded-full text-xs font-medium ${
