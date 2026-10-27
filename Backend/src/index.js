@@ -49,7 +49,7 @@ app.use('/submission',submitRoute);
 app.use('/video',videoRouter);
 app.use('/ai',aiRouter);
 
-
+const PORT = process.env.PORT || 4000;
 const initialChecking = async () => {
   try {
     await main();
