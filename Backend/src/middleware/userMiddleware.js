@@ -26,11 +26,11 @@ const userMiddleware = async (req, res, next) => {
 
     // const isBlocked = await redisClient.exists(`token:${token}`);
 
-    if (isBlocked) {
-      return res.status(401).json({
-        message: "Session expired. Please login again."
-      });
-    }
+    // if (isBlocked) {
+    //   return res.status(401).json({
+    //     message: "Session expired. Please login again."
+    //   });
+    // }
 
     req.user = user;
     next();
