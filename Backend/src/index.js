@@ -54,7 +54,7 @@ const initialChecking=async()=>{
 
 try{
       // redisClient.connect()
-  await Promise.all([main(),redisClient.connect()]);
+  await Promise.all([main()]);
   console.log("Redis database connection succeefully");
   console.log("database connection successfully");
 
