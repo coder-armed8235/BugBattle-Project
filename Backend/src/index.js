@@ -50,21 +50,24 @@ app.use('/video',videoRouter);
 app.use('/ai',aiRouter);
 
 
-const initialChecking=async()=>{
+const initialChecking = async () => {
+  try {
+    await main();
+    console.log("Database connected successfully");
+  } catch (error) {
+    console.error("Database connection failed:", error);
+  }
 
-try{
-      // redisClient.connect()
-  await Promise.all([main(),redisClient.connect()]);
-  console.log("Redis database connection succeefully");
-  console.log("database connection successfully");
+  try {
+    await redisClient.connect();
+    console.log("Redis connected successfully");
+  } catch (error) {
+    console.error("Redis connection failed:", error);
+  }
 
-   app.listen(process.env.PORT,()=>{
-      console.log("Listing port No. 4000");
-})
-}
-catch(error){
-  console.log(error.message);
-}
-}
+  app.listen(PORT, "0.0.0.0", () => {
+    console.log(`Server listening on port ${PORT}`);
+  });
+};
 
 initialChecking();
